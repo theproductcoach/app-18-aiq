@@ -29,7 +29,15 @@ export default function QuizContent() {
     const fetchQuestions = async () => {
       try {
         const response = await fetch(
-          `/api/quiz?difficulty=${difficulty}&topic=${topic}`
+          `/api/quiz?difficulty=${difficulty}&topic=${topic}&t=${Date.now()}`,
+          {
+            cache: "no-store",
+            headers: {
+              "Cache-Control": "no-cache, no-store, must-revalidate",
+              Pragma: "no-cache",
+              Expires: "0",
+            },
+          }
         );
         if (!response.ok) throw new Error("Failed to fetch questions");
         const questions: QuizQuestion[] = await response.json();

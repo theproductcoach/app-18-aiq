@@ -92,16 +92,28 @@ export default function ResultPage() {
         ))}
       </div>
 
-      <button
-        className="button"
-        style={{ width: "100%" }}
-        onClick={() => {
-          localStorage.removeItem("quizState");
-          router.push("/");
-        }}
-      >
-        Take Another Quiz
-      </button>
+      <div style={{ display: "flex", gap: "1rem", marginTop: "2rem" }}>
+        <button
+          className="button"
+          style={{ flex: 1 }}
+          onClick={() => {
+            localStorage.removeItem("quizState");
+            router.push("/test");
+          }}
+        >
+          Take Another Quiz
+        </button>
+        <button
+          className="button"
+          style={{ flex: 1 }}
+          onClick={() => {
+            localStorage.removeItem("quizState");
+            router.push(`/study/${quizState.settings.topic}`);
+          }}
+        >
+          Learn More
+        </button>
+      </div>
     </div>
   );
 }
