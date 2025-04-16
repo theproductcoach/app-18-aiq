@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import ModeToggle from "@/components/ModeToggle";
+import StudyTestLayout from "@/components/StudyTestLayout";
 
 const TOPICS = [
   {
@@ -44,11 +45,7 @@ const TOPICS = [
 
 export default function StudyPage() {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mode-toggle-container">
-        <ModeToggle currentMode="study" />
-      </div>
-
+    <StudyTestLayout currentMode="study">
       <h1 className="page-title text-center">Study Topics</h1>
 
       <div className="topic-grid">
@@ -65,6 +62,6 @@ export default function StudyPage() {
           </Link>
         ))}
       </div>
-    </div>
+    </StudyTestLayout>
   );
 }

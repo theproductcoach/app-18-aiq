@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import type { Difficulty, Topic } from "@/types/quiz";
-import ModeToggle from "@/components/ModeToggle";
+import StudyTestLayout from "@/components/StudyTestLayout";
 
 const TOPIC_DISPLAY_NAMES: Record<Topic, string> = {
   fundamentals: "AI Fundamentals",
@@ -57,11 +57,7 @@ export default function TestPage() {
   };
 
   return (
-    <>
-      <div className="mode-toggle-container">
-        <ModeToggle currentMode="test" />
-      </div>
-
+    <StudyTestLayout currentMode="test">
       <div className="page-header">
         <h2 className="page-title">Test Mode</h2>
       </div>
@@ -116,6 +112,6 @@ export default function TestPage() {
           </button>
         </div>
       </div>
-    </>
+    </StudyTestLayout>
   );
 }
