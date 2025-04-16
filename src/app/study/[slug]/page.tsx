@@ -268,6 +268,50 @@ const STUDY_CONTENT = {
     ],
     topic: "history",
   },
+  "technical-implementation": {
+    title: "Technical AI Implementation",
+    introduction:
+      "Modern AI systems rely on a variety of technical components to function effectively. In this section, you'll explore the behind-the-scenes elements that power tools like ChatGPT, search augmentation, and generative models — from configuration parameters like temperature to retrieval systems and embeddings.",
+    sections: [
+      {
+        title: "Temperature and Top-p (Nucleus Sampling)",
+        content: [
+          "Temperature is a key parameter that controls the randomness or 'creativity' of AI model outputs. A temperature of 0 makes the model deterministic, always choosing the most likely next token, while higher values (like 0.8) introduce more randomness and diversity in responses.",
+          "For example, with low temperature (0.2), asking for a story about a cat might give you straightforward, predictable narratives. With high temperature (0.8), you might get more creative and unexpected storylines.",
+          "Top-p sampling (nucleus sampling) is an alternative to temperature. Instead of scaling probabilities, it considers only the most likely tokens that sum to probability p. This can provide more controlled randomness compared to temperature, though they're often used together.",
+        ],
+        hasQuiz: true,
+      },
+      {
+        title: "Retrieval-Augmented Generation (RAG)",
+        content: [
+          "Retrieval-Augmented Generation (RAG) combines the power of large language models with external knowledge retrieval. This approach helps models provide more accurate, up-to-date, and verifiable responses by referencing specific documents or data sources.",
+          "A typical RAG architecture consists of two main components: a retrieval system that finds relevant information from a knowledge base, and a language model that generates responses using both the retrieved information and its pre-trained knowledge.",
+          "This approach is particularly valuable for applications requiring high accuracy and factual grounding, such as customer support systems or technical documentation assistants. It helps prevent hallucinations and enables models to cite specific sources.",
+        ],
+        hasQuiz: true,
+      },
+      {
+        title: "Embeddings and Vector Search",
+        content: [
+          "Embeddings are numerical representations of text, images, or other data in high-dimensional space. They capture semantic meaning, allowing similar items to be close to each other in this space. For example, the words 'happy' and 'joyful' would have similar embedding vectors.",
+          "Vector similarity search uses these embeddings to find related content. Common similarity metrics include cosine similarity and Euclidean distance. This enables efficient semantic search where results are based on meaning rather than just keyword matching.",
+          "Vector databases like Pinecone, Weaviate, or Milvus are specialized for storing and searching these embeddings at scale. They use sophisticated indexing techniques to enable fast similarity search across millions of vectors, making them crucial for applications like semantic search and recommendation systems.",
+        ],
+        hasQuiz: true,
+      },
+      {
+        title: "Model Selection and Prompt Engineering",
+        content: [
+          "Different AI models offer varying capabilities and trade-offs. GPT-3.5 provides a good balance of performance and cost, while GPT-4 offers enhanced reasoning and specialized capabilities but at higher cost. Choosing the right model depends on factors like task complexity, required accuracy, and budget constraints.",
+          "Effective prompt engineering is crucial for getting optimal results from these models. Clear, specific instructions often work better than vague queries. Common techniques include few-shot learning (providing examples in the prompt) and chain-of-thought prompting (asking the model to explain its reasoning step by step).",
+          "The format and structure of prompts can significantly impact model performance. For instance, using clear delimiters between sections, specifying desired output formats, and providing context about the intended audience can help ensure more accurate and useful responses.",
+        ],
+        hasQuiz: true,
+      },
+    ],
+    topic: "technical-implementation",
+  },
 };
 
 export default function StudyTopicPage() {

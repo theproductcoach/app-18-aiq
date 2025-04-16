@@ -71,5 +71,76 @@ export const studyContent: TopicContent[] = [
       'The 21st century has seen unprecedented progress, driven by increased computing power, big data, and improved algorithms. Breakthroughs in deep learning, starting with AlexNet in 2012, have led to dramatic improvements in image recognition, natural language processing, and game playing.',
       'Today, AI continues to evolve rapidly, with developments in areas like transformer models, reinforcement learning, and multimodal AI pushing the boundaries of what\'s possible.'
     ]
+  },
+  {
+    id: 'technical-implementation',
+    title: 'Technical Implementation',
+    shortDescription: 'Understand the technical aspects of AI systems and their implementation.',
+    content: [
+      'Technical implementation of AI systems involves various components, including hardware, software, and algorithms. These components work together to enable AI systems to perform tasks and make decisions based on data.',
+      'Hardware refers to the physical components of an AI system, such as CPUs, GPUs, and specialized hardware for AI tasks. Software includes the operating system, programming languages, and frameworks used to develop and run AI systems.',
+      'Algorithms are the mathematical and computational methods used to train and run AI systems. These algorithms can range from simple linear models to complex neural networks. Understanding these technical aspects is crucial for developing and deploying AI systems effectively.',
+      'Recent advancements in hardware and software technologies have enabled significant progress in AI, from self-driving cars to medical diagnosis systems.'
+    ]
   }
-]; 
+];
+
+export const quizQuestions: Record<Topic, QuizQuestion[]> = {
+  "technical-implementation": [
+    {
+      question: "What effect does setting a temperature of 0 have on an AI model's output?",
+      options: [
+        "It makes the model always choose the most likely next token",
+        "It makes the model's output completely random",
+        "It turns off the model's ability to generate text",
+        "It increases the model's creativity"
+      ],
+      correctAnswer: 0,
+      explanation: "A temperature of 0 makes the model deterministic, always selecting the most probable next token, resulting in consistent but potentially less creative outputs."
+    },
+    {
+      question: "What is the main purpose of Retrieval-Augmented Generation (RAG)?",
+      options: [
+        "To make models generate faster responses",
+        "To combine language models with external knowledge retrieval",
+        "To reduce the model's memory usage",
+        "To create more random outputs"
+      ],
+      correctAnswer: 1,
+      explanation: "RAG enhances model responses by combining the language model's capabilities with the ability to retrieve and reference specific information from external knowledge sources."
+    },
+    {
+      question: "What is the primary purpose of embeddings in AI systems?",
+      options: [
+        "To compress data for storage",
+        "To encrypt sensitive information",
+        "To represent data in a way that captures semantic meaning",
+        "To speed up model training"
+      ],
+      correctAnswer: 2,
+      explanation: "Embeddings are numerical representations that capture semantic meaning, allowing similar items to be close to each other in high-dimensional space."
+    },
+    {
+      question: "Which of the following is a common prompt engineering technique?",
+      options: [
+        "Random word insertion",
+        "Chain-of-thought prompting",
+        "Token scrambling",
+        "Model retraining"
+      ],
+      correctAnswer: 1,
+      explanation: "Chain-of-thought prompting is a technique where you ask the model to explain its reasoning step by step, often leading to more accurate and logical responses."
+    },
+    {
+      question: "What is Top-p (nucleus) sampling used for?",
+      options: [
+        "To increase model training speed",
+        "To reduce memory usage",
+        "To control randomness by considering only the most likely tokens",
+        "To compress model outputs"
+      ],
+      correctAnswer: 2,
+      explanation: "Top-p sampling considers only the most likely tokens that sum to probability p, providing a more controlled approach to introducing randomness in model outputs."
+    }
+  ]
+}; 

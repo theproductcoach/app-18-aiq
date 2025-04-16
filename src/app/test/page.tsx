@@ -5,14 +5,50 @@ import { useRouter } from "next/navigation";
 import type { Difficulty, Topic } from "@/types/quiz";
 import StudyTestLayout from "@/components/StudyTestLayout";
 
-const TOPIC_DISPLAY_NAMES: Record<Topic, string> = {
-  fundamentals: "AI Fundamentals",
-  llms: "Large Language Models (LLMs)",
-  "neural-networks": "Neural Networks",
-  ethics: "AI Ethics and Bias",
-  "real-world": "AI in the Real World",
-  history: "History of AI",
-};
+const TOPICS = [
+  {
+    id: "fundamentals",
+    title: "AI Fundamentals",
+    description:
+      "Learn the core concepts and building blocks of artificial intelligence systems.",
+  },
+  {
+    id: "llms",
+    title: "Large Language Models (LLMs)",
+    description:
+      "Explore how LLMs work and their impact on natural language processing.",
+  },
+  {
+    id: "neural-networks",
+    title: "Neural Networks",
+    description:
+      "Understand the architecture and principles behind neural networks.",
+  },
+  {
+    id: "ethics",
+    title: "AI Ethics and Bias",
+    description:
+      "Examine the ethical considerations and challenges in AI development.",
+  },
+  {
+    id: "real-world",
+    title: "AI in the Real World",
+    description:
+      "Discover how AI is transforming industries and everyday life.",
+  },
+  {
+    id: "history",
+    title: "History of AI",
+    description:
+      "Trace the evolution of artificial intelligence from its origins to today.",
+  },
+  {
+    id: "technical-implementation",
+    title: "Technical AI Implementation",
+    description:
+      "Explore the technical components that power modern AI systems.",
+  },
+];
 
 export default function TestPage() {
   const router = useRouter();
@@ -20,6 +56,10 @@ export default function TestPage() {
     difficulty: "medium" as Difficulty,
     topic: "fundamentals" as Topic,
   });
+
+  const handleTopicSelect = (topicId: string) => {
+    setSettings((prev) => ({ ...prev, topic: topicId as Topic }));
+  };
 
   const handleDifficultyChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,59 +98,51 @@ export default function TestPage() {
 
   return (
     <StudyTestLayout currentMode="test">
-      <div className="page-header">
-        <h2 className="page-title">Test Your Knowledge</h2>
+      <h1 className="page-title">Test Your Knowledge</h1>
+
+      <h2 className="section-title">Select Topic:</h2>
+      <div className="topic-grid">
+        {TOPICS.map((topic) => (
+          <button
+            key={topic.id}
+            className={`topic-card ${
+              settings.topic === topic.id ? "selected" : ""
+            }`}
+            onClick={() => handleTopicSelect(topic.id)}
+          >
+            <h2>{topic.title}</h2>
+            <p>{topic.description}</p>
+          </button>
+        ))}
       </div>
 
-      <div className="quiz-form">
-        <div className="content-card">
-          <div className="form-group">
-            <label htmlFor="topic" className="form-label">
-              Select Topic:
-            </label>
-            <select
-              id="topic"
-              className="select"
-              value={settings.topic}
-              onChange={(e) =>
-                setSettings({ ...settings, topic: e.target.value as Topic })
-              }
-            >
-              {Object.entries(TOPIC_DISPLAY_NAMES).map(([value, label]) => (
-                <option key={value} value={value}>
-                  {label}
-                </option>
-              ))}
-            </select>
+      <div className="difficulty-section">
+        <h2 className="section-title">Select Difficulty:</h2>
+        <div className="difficulty-container">
+          <div className="difficulty-slider-wrapper">
+            <input
+              type="range"
+              id="difficulty"
+              className="difficulty-slider"
+              min="0"
+              max="100"
+              value={getDifficultyValue(settings.difficulty)}
+              onChange={handleDifficultyChange}
+            />
           </div>
-
-          <div className="form-group">
-            <label htmlFor="difficulty" className="form-label">
-              Select Difficulty:
-            </label>
-            <div className="difficulty-slider-wrapper">
-              <input
-                type="range"
-                id="difficulty"
-                className="difficulty-slider"
-                min="0"
-                max="100"
-                value={getDifficultyValue(settings.difficulty)}
-                onChange={handleDifficultyChange}
-              />
-            </div>
-            <div className="difficulty-label-container">
-              <span className={`difficulty-label ${settings.difficulty}`}>
-                {settings.difficulty.charAt(0).toUpperCase() +
-                  settings.difficulty.slice(1)}
-              </span>
-            </div>
+          <div className="difficulty-label-container">
+            <span className={`difficulty-label ${settings.difficulty}`}>
+              {settings.difficulty.charAt(0).toUpperCase() +
+                settings.difficulty.slice(1)}
+            </span>
           </div>
-
-          <button className="button" onClick={handleStartQuiz}>
-            Start Quiz
-          </button>
         </div>
+      </div>
+
+      <div className="start-quiz-container">
+        <button className="button" onClick={handleStartQuiz}>
+          Start Quiz
+        </button>
       </div>
     </StudyTestLayout>
   );

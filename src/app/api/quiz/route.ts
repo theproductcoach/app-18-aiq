@@ -8,7 +8,8 @@ const TOPIC_PROMPTS: Record<Topic, string> = {
   'neural-networks': 'neural networks and deep learning, including network architecture, training processes, and applications',
   'ethics': 'AI ethics and bias, including fairness, transparency, accountability, and societal implications',
   'real-world': 'real-world applications of AI across different industries, current implementations, and practical use cases',
-  'history': 'the history of artificial intelligence, including key developments, breakthroughs, and influential figures'
+  'history': 'the history of artificial intelligence, including key developments, breakthroughs, and influential figures',
+  'technical-implementation': 'technical aspects of AI implementation, including temperature settings, RAG, embeddings, vector search, and prompt engineering'
 };
 
 const openai = new OpenAI({
@@ -114,7 +115,9 @@ Requirements:
 4. correctAnswer MUST be a number 0-3 indicating the index of the correct option
 5. All questions must be about ${TOPIC_PROMPTS[topic]}
 6. All questions must be at ${difficulty} difficulty level
-7. Each explanation must be clear and educational`
+7. Each explanation must be clear and educational
+8. IMPORTANT: Randomize the position of the correct answer for each question - don't always put it in the same position
+9. Make sure the options are in a random order for each question`
         }
       ],
       temperature: 0.7,

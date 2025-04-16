@@ -23,6 +23,7 @@ export default function QuizContent() {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -43,9 +44,15 @@ export default function QuizContent() {
     fetchQuestions();
   }, [difficulty, topic]);
 
+  // Reset selected answer when moving to next question
+  useEffect(() => {
+    setSelectedAnswer(null);
+  }, [quizState.currentQuestionIndex]);
+
   const currentQuestion = quizState.questions[quizState.currentQuestionIndex];
 
   const handleAnswer = (answerIndex: number) => {
+    setSelectedAnswer(answerIndex);
     const newAnswers = [...quizState.answers];
     newAnswers[quizState.currentQuestionIndex] = answerIndex;
 
@@ -67,11 +74,14 @@ export default function QuizContent() {
       localStorage.setItem("quizState", JSON.stringify(finalState));
       router.push("/result");
     } else {
-      setQuizState((prev) => ({
-        ...prev,
-        answers: newAnswers,
-        currentQuestionIndex: prev.currentQuestionIndex + 1,
-      }));
+      // Add a small delay before moving to the next question
+      setTimeout(() => {
+        setQuizState((prev) => ({
+          ...prev,
+          answers: newAnswers,
+          currentQuestionIndex: prev.currentQuestionIndex + 1,
+        }));
+      }, 300);
     }
   };
 
@@ -123,7 +133,7 @@ export default function QuizContent() {
       <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
         {currentQuestion.options.map((option, index) => (
           <button
-            key={index}
+            key={`${quizState.currentQuestionIndex}-${index}`}
             className="answer-button"
             onClick={() => handleAnswer(index)}
           >

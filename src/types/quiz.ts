@@ -6,7 +6,8 @@ export type Topic =
   | 'neural-networks'
   | 'ethics'
   | 'real-world'
-  | 'history';
+  | 'history'
+  | 'technical-implementation';
 
 export interface QuizQuestion {
   id: number;

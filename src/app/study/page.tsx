@@ -41,6 +41,12 @@ const TOPICS = [
     description:
       "Trace the evolution of artificial intelligence from its origins to today.",
   },
+  {
+    slug: "technical-implementation",
+    title: "Technical AI Implementation",
+    description:
+      "Explore the technical components that power modern AI systems, from configuration to deployment.",
+  },
 ];
 
 export default function StudyPage() {
