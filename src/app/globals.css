@@ -426,7 +426,7 @@ h3 {
     /* Test Mode Topic Cards */
     .test .topic-grid {
       grid-template-columns: 1fr;
-      margin-bottom: 3rem;
+      margin-bottom: 1.5rem;
     }
     
     .test .topic-card {
@@ -710,7 +710,7 @@ h3 {
 .section-title {
   font-size: 1.25rem;
   color: var(--text-color);
-  margin: 2rem 0 1.5rem;
+  margin: 1rem 0 1.5rem;
   text-align: center;
 }
 
@@ -777,14 +777,14 @@ h3 {
 .section-title {
   font-size: 1.25rem;
   color: var(--text-color);
-  margin: 2rem 0 1.5rem;
+  margin: 1rem 0 1.5rem;
   text-align: center;
 }
 
 /* Topic Grid Spacing */
 .test .topic-grid {
   grid-template-columns: 1fr;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 /* Difficulty Controls */
