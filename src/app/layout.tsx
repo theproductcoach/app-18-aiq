@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "AIQ - Test Your AI Knowledge",
   description:
     "Take quizzes to test your knowledge about artificial intelligence",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -27,38 +27,33 @@ export default function StudyPageLayout({
       </div>
 
       <div className="study-content">
-        <h1 className="page-title text-center mb-8">{title}</h1>
+        <h1 className="page-title">{title}</h1>
 
-        <div className="content-card mb-8">
-          <p className="text-[#e0e0e0] leading-relaxed">{introduction}</p>
+        <Link href="/study" className="back-link">
+          <span className="arrow">←</span>
+          <span className="text">Back to Topics</span>
+        </Link>
+
+        <div className="content-card">
+          <p>{introduction}</p>
         </div>
 
-        <div className="space-y-8">
+        <div className="section-list">
           {sections.map((section, index) => (
             <div key={index} className="content-card">
-              <h2 className="text-2xl font-semibold text-[#ff6b00] mb-4">
-                {section.title}
-              </h2>
+              <h2 className="section-title">{section.title}</h2>
 
               {section.content.map((paragraph, pIndex) => (
-                <p
-                  key={pIndex}
-                  className="text-[#e0e0e0] leading-relaxed mb-4 last:mb-6"
-                >
-                  {paragraph}
-                </p>
+                <p key={pIndex}>{paragraph}</p>
               ))}
-
-              {section.hasQuiz && (
-                <Link
-                  href={`/quiz?topic=${topic}&section=${index + 1}`}
-                  className="button inline-block"
-                >
-                  Test Yourself
-                </Link>
-              )}
             </div>
           ))}
+        </div>
+
+        <div className="test-button-container">
+          <Link href="/test" className="button test-button">
+            Test Your Knowledge
+          </Link>
         </div>
       </div>
     </>

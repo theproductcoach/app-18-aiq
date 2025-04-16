@@ -59,7 +59,7 @@ export default function TestPage() {
   return (
     <StudyTestLayout currentMode="test">
       <div className="page-header">
-        <h2 className="page-title">Test Mode</h2>
+        <h2 className="page-title">Test Your Knowledge</h2>
       </div>
 
       <div className="quiz-form">
