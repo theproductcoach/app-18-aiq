@@ -12,7 +12,7 @@ export default function StudyTestLayout({
   currentMode,
 }: StudyTestLayoutProps) {
   return (
-    <div className="study-test-layout">
+    <div className={`study-test-layout ${currentMode}`}>
       <div className="mode-toggle-container">
         <ModeToggle currentMode={currentMode} />
       </div>

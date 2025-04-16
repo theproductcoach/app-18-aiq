@@ -155,6 +155,7 @@ a {
   width: 100%;
   text-align: left;
   margin-bottom: 0.75rem;
+  outline: none;
 }
 
 .answer-button:hover {
@@ -162,6 +163,16 @@ a {
   background-color: rgba(255, 107, 0, 0.15);
 }
 
+.answer-button:focus {
+  border-color: var(--border-color);
+  background-color: var(--card-background);
+  outline: none;
+}
+
+.answer-button:active {
+  border-color: var(--primary-color);
+  background-color: rgba(255, 107, 0, 0.15);
+}
 .result-card {
   border: 1px solid var(--border-color);
   border-radius: 0.75rem;
@@ -306,7 +317,7 @@ h3 {
   height: 24px;
   display: flex;
   align-items: center;
-  padding: 0 12px;
+  padding: 0;
 }
 
 /* Add responsive adjustments for very small screens */
@@ -370,47 +381,129 @@ h3 {
   background: rgba(255, 255, 255, 0.1);
 }
 
+/* Topic Grids */
 .topic-grid {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 1.5rem;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
+    display: grid;
+    gap: 1rem;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
 }
 
-.topic-card {
+/* Study Mode Topic Cards */
+.study .topic-grid {
+  grid-template-columns: 1fr;
+  max-width: 800px;
+}
+
+.study .topic-card {
   background-color: var(--card-background);
   border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
-  padding: 1.5rem;
-  transition: all 0.2s ease-in-out;
+    border-radius: 1rem;
+      padding: 1.5rem;
+      transition: all 0.2s ease-in-out;
+    cursor: pointer;
+      width: 100%;
+      text-align: left;
+      color: inherit;
+    }
+    
+    .study .topic-card h2 {
+      color: var(--primary-color);
+      margin-bottom: 0.75rem;
+      font-size: 1.25rem;
+      line-height: 1.3;
+    }
+    
+    .study .topic-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.4;
+      margin: 0;
+    }
+    
+    /* Test Mode Topic Cards */
+    .test .topic-grid {
+      grid-template-columns: 1fr;
+      margin-bottom: 1.5rem;
+    }
+    
+    .test .topic-card {
+      background-color: var(--card-background);
+      border: 1px solid var(--border-color);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      color: inherit;
+    }
+    
+    .test .topic-card h2 {
+      color: var(--primary-color);
+      margin-bottom: 0;
+      font-size: 1.125rem;
+      line-height: 1.3;
+    }
+    
+    .test .topic-card p {
+      display: none;
 }
 
+/* Hover States */
 .topic-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-color: var(--primary-color);
+}
+
+.topic-card.selected {
   border-color: var(--primary-color);
+  background-color: rgba(255, 107, 0, 0.15);
 }
 
-.topic-card h2 {
-  color: var(--primary-color);
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .test .topic-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    max-width: 100%;
+    /* Add this */
+    padding: 0 1rem;
+    /* Add this */
+  }
+
+  .topic-card {
+    padding: 1rem;
+    width: 100%;
+    /* Add this */
+  }
+
+  .study .topic-card h2 {
+    font-size: 1.125rem;
+  }
+
+  .test .topic-card h2 {
+    font-size: 1rem;
+  }
 }
 
-.topic-card p {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
+/* Page Title */
+.page-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  margin: 1rem 0 2rem;
 }
 
+/* Study Content */
 .study-content {
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.6;
+    max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
 }
 
 .study-content h1 {
@@ -494,29 +587,15 @@ h3 {
   margin-bottom: 1rem;
 }
 
-.page-title {
-  font-size: 1.875rem;
-  font-weight: 600;
-  color: white;
-  text-align: center;
-  margin-bottom: 2.5rem;
-  }
-  
-  .study-content .page-title {
-    color: var(--primary-color);
+.study-content .page-title {
+  color: var(--primary-color);
   margin-bottom: 2rem;
 }
 
 /* Grid Layout */
 @media (min-width: 768px) {
   .topic-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .topic-grid {
-    grid-template-columns: repeat(3, 1fr);
+    /* Remove the 2-column layout */
   }
 }
 
@@ -572,12 +651,6 @@ h3 {
   color: #a0a0a0;
 }
 
-.difficulty-label-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 0.5rem;
-}
-
 /* Link Styles */
 .no-underline {
   text-decoration: none;
@@ -625,13 +698,6 @@ h3 {
   margin-bottom: 2rem;
 }
 
-.section-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--primary-color);
-  margin-bottom: 1rem;
-}
-
 .content-card p {
   color: var(--text-color);
   line-height: 1.6;
@@ -640,4 +706,150 @@ h3 {
 
 .content-card p:last-child {
   margin-bottom: 0;
+}
+.section-title {
+  font-size: 1.25rem;
+  color: var(--text-color);
+  margin: 1rem 0 1.5rem;
+  text-align: center;
+}
+
+.difficulty-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 3rem auto 2rem;
+  padding: 0 1rem;
+}
+
+.difficulty-container {
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.difficulty-label-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.difficulty-label {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.difficulty-label.easy {
+  background-color: rgba(76, 175, 80, 0.2);
+  color: var(--easy-color);
+}
+
+.difficulty-label.medium {
+  background-color: rgba(255, 152, 0, 0.2);
+  color: var(--medium-color);
+}
+
+.difficulty-label.hard {
+  background-color: rgba(244, 67, 54, 0.2);
+  color: var(--hard-color);
+}
+
+.start-quiz-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+
+.start-quiz-container .button {
+  width: 100%;
+  max-width: 300px;
+  font-size: 1.125rem;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+/* Section Headers */
+.section-title {
+  font-size: 1.25rem;
+  color: var(--text-color);
+  margin: 1rem 0 1.5rem;
+  text-align: center;
+}
+
+/* Topic Grid Spacing */
+.test .topic-grid {
+  grid-template-columns: 1fr;
+  margin-bottom: 1.5rem;
+}
+
+/* Difficulty Controls */
+.difficulty-section {
+  max-width: 600px;
+  margin: 3rem auto 2rem;
+  padding: 0 1rem;
+}
+
+.difficulty-container {
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.difficulty-label-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.difficulty-label {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.difficulty-label.easy {
+  background-color: rgba(76, 175, 80, 0.2);
+  color: var(--easy-color);
+}
+
+.difficulty-label.medium {
+  background-color: rgba(255, 152, 0, 0.2);
+  color: var(--medium-color);
+}
+
+.difficulty-label.hard {
+  background-color: rgba(244, 67, 54, 0.2);
+  color: var(--hard-color);
+}
+
+/* Quiz Controls */
+.start-quiz-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+
+.start-quiz-container .button {
+  width: 100%;
+  max-width: 300px;
+  font-size: 1.125rem;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+/* Two columns only on larger screens */
+@media (min-width: 640px) {
+  .test .topic-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

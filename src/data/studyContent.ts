@@ -71,5 +71,16 @@ export const studyContent: TopicContent[] = [
       'The 21st century has seen unprecedented progress, driven by increased computing power, big data, and improved algorithms. Breakthroughs in deep learning, starting with AlexNet in 2012, have led to dramatic improvements in image recognition, natural language processing, and game playing.',
       'Today, AI continues to evolve rapidly, with developments in areas like transformer models, reinforcement learning, and multimodal AI pushing the boundaries of what\'s possible.'
     ]
+  },
+  {
+    id: 'technical-implementation',
+    title: 'Technical Implementation',
+    shortDescription: 'Understand the technical aspects of AI systems and their implementation.',
+    content: [
+      'Technical implementation of AI systems involves various components, including hardware, software, and algorithms. These components work together to enable AI systems to perform tasks and make decisions based on data.',
+      'Hardware refers to the physical components of an AI system, such as CPUs, GPUs, and specialized hardware for AI tasks. Software includes the operating system, programming languages, and frameworks used to develop and run AI systems.',
+      'Algorithms are the mathematical and computational methods used to train and run AI systems. These algorithms can range from simple linear models to complex neural networks. Understanding these technical aspects is crucial for developing and deploying AI systems effectively.',
+      'Recent advancements in hardware and software technologies have enabled significant progress in AI, from self-driving cars to medical diagnosis systems.'
+    ]
   }
 ]; 

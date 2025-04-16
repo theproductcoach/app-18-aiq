@@ -8,7 +8,8 @@ const TOPIC_PROMPTS: Record<Topic, string> = {
   'neural-networks': 'neural networks and deep learning, including network architecture, training processes, and applications',
   'ethics': 'AI ethics and bias, including fairness, transparency, accountability, and societal implications',
   'real-world': 'real-world applications of AI across different industries, current implementations, and practical use cases',
-  'history': 'the history of artificial intelligence, including key developments, breakthroughs, and influential figures'
+  'history': 'the history of artificial intelligence, including key developments, breakthroughs, and influential figures',
+  'technical-implementation': 'technical aspects of AI implementation, including temperature settings, RAG, embeddings, vector search, and prompt engineering'
 };
 
 const openai = new OpenAI({
@@ -114,10 +115,14 @@ Requirements:
 4. correctAnswer MUST be a number 0-3 indicating the index of the correct option
 5. All questions must be about ${TOPIC_PROMPTS[topic]}
 6. All questions must be at ${difficulty} difficulty level
-7. Each explanation must be clear and educational`
+7. Each explanation must be clear and educational
+8. IMPORTANT: Randomize the position of the correct answer for each question - don't always put it in the same position
+9. Make sure the options are in a random order for each question
+10. IMPORTANT: Generate different questions each time - avoid repeating questions from previous calls
+11. CRITICAL: All questions and answers must be factually accurate - do not generate incorrect information`
         }
       ],
-      temperature: 0.7,
+      temperature: 0.3,  // Lower temperature for more consistent, factual responses
       response_format: { type: "json_object" }
     });
 
@@ -135,7 +140,15 @@ Requirements:
       id: index,
     }));
 
-    return NextResponse.json(questionsWithIds);
+    // Return response with no-cache headers
+    return new NextResponse(JSON.stringify(questionsWithIds), {
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+      },
+    });
   } catch (error) {
     console.error('Error generating quiz questions:', error);
     
@@ -146,7 +159,14 @@ Requirements:
         error: 'Failed to generate quiz questions',
         details: errorMessage
       },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0',
+        }
+      }
     );
   }
 } 
